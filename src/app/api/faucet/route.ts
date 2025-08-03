@@ -13,7 +13,7 @@ const suiClient = new SuiClient({ url: getFullnodeUrl('testnet') })
 
 // Rate limiting configuration
 const RATE_LIMIT_WINDOW = 60 * 60 * 1000 // 1 hour in milliseconds
-const FAUCET_AMOUNT = 500000000 // 0.5 SUI in MIST (1 SUI = 10^9 MIST)
+const FAUCET_AMOUNT = 1000000000 // 1 SUI in MIST (1 SUI = 10^9 MIST)
 
 // Initialize Redis client (optional, falls back to in-memory if not available)
 let redisClient: ReturnType<typeof createClient> | null = null
@@ -208,7 +208,7 @@ export async function POST(request: NextRequest) {
       })
 
       return NextResponse.json({
-        message: `Successfully sent 0.5 SUI to ${walletAddress}`,
+        message: `Successfully sent 1 SUI to ${walletAddress}`,
         txHash: result.digest,
         amount: FAUCET_AMOUNT,
         explorerUrl: `https://testnet.suivision.xyz/txblock/${result.digest}`
@@ -294,7 +294,14 @@ export async function GET() {
     return NextResponse.json({
       totalRequests,
       stats,
-      recentRequests: recentRequests.map(req => ({
+      recentRequests: recentRequests.map((req: {
+        id: string;
+        walletAddress: string;
+        amount: bigint;
+        status: string;
+        createdAt: Date;
+        txHash: string | null;
+      }) => ({
         ...req,
         walletAddress: `${req.walletAddress.slice(0, 6)}...${req.walletAddress.slice(-4)}`,
         amount: req.amount.toString()
