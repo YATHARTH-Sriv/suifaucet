@@ -219,7 +219,6 @@ vercel
 - `npm run db:migrate` - Run database migrations
 - `npm run db:deploy` - Deploy migrations to production
 - `npm run db:studio` - Open Prisma Studio
-- `npm run setup` - Run initial setup script
 
 ## 🆘 Troubleshooting
 
