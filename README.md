@@ -36,7 +36,8 @@ A clean, reliable, and user-friendly Sui Testnet Faucet DApp that helps develope
 ```bash
 git clone <your-repo>
 cd suifaucet
-npm run setup
+npm i
+npm run dev
 ```
 
 2. **Configure environment**:
