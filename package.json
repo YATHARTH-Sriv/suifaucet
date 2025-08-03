@@ -4,16 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:deploy": "prisma migrate deploy",
-    "db:studio": "prisma studio",
-    "setup": "./setup.sh",
-    "check-faucet-balance": "node scripts/check-faucet-balance.js",
-    "fund-faucet": "node scripts/fund-faucet.js"
+    "db:studio": "prisma studio"
   },
   "dependencies": {
     "@mysten/dapp-kit": "^0.14.0",
